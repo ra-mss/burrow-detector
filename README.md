@@ -49,7 +49,7 @@ El modelo final (`yolov8s` @ 100 épocas) alcanzó métricas excelentes:
 
 3.  **Descargar Datos:**
     Los datos (TIF, GPKG) y el modelo pre-entrenado (`best.pt`) están alojados en Google Drive:
-    **[Descargar Datos y Modelo desde Google Drive](https://TU-ENLACE-DE-GOOGLE-DRIVE-AQUI)**
+    **[Descargar datos y modelo desde Google Drive](https://drive.google.com/drive/folders/1pfABimVoW9SdZKqjGkRyTnlERN-OpLk_?usp=drive_link)**
 
 4.  **Configurar Rutas:**
     Modifica el archivo `config.py` para apuntar a las rutas donde descargaste los datos en tu máquina local o en tu bucket de S3.
@@ -57,11 +57,11 @@ El modelo final (`yolov8s` @ 100 épocas) alcanzó métricas excelentes:
 5.  **Ejecutar el Pipeline:**
     ```bash
     # Fase 2: Crear el dataset desde cero
-    python fase_2_crear_dataset.py
+    python create_dataset.py
 
     # Fase 3: Entrenar el modelo desde cero
-    python fase_3_entrenar.py
+    python train.py
 
     # Fase 4: Ejecutar la inferencia con el modelo pre-entrenado
-    python fase_4_inferencia.py
+    python inference.py
     ```
