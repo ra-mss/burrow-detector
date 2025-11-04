@@ -4,20 +4,19 @@ Este proyecto es un pipeline de MLOps (Machine Learning Operations) de principio
 
 El flujo de trabajo completo pasa de un etiquetado manual en QGIS a un pipeline automatizado de entrenamiento e inferencia desplegable en **AWS (Amazon SageMaker)**, usando GitHub para el control de versiones.
 
-### Resultado Final
-*(CAPTURA DE PANTALLA DE QGIS CON DETECCIONES FINALES)*
-![Resultado en QGIS](ENLACE_A_IMAGEN_DE_RESULTADO.png)
+### Resultado final
+![Resultado en QGIS](https://github.com/ra-mss/Ramses_Portfolio/blob/main/BD1.png)
 
 ---
 
-## 🚀 El Desafío
+## 🚀 Objetivo
 El objetivo era contar miles de madrigueras de pocos píxeles en una imagen TIF de 1.58 GB (27497 x 29283 px). El análisis local en un notebook es inviable o muy lento (más de 1.5 horas solo para la inferencia en CPU).
 
-## 💡 La Solución (Arquitectura)
+## 💡 Solución
 Desarrollé un pipeline modular en Python que divide el problema en fases, diseñado para ejecutarse en la nube:
 
 1.  **Datos (S3):** Todos los archivos pesados (TIF, GPKG) se almacenan en **AWS S3**.
-2.  **Etiquetado (QGIS):** Se etiqueta un *recorte representativo* de la imagen (no la imagen completa).
+2.  **Fase 1 (Etiquetado en QGIS):** Se etiqueta un *recorte representativo* de la imagen (no la imagen completa).
 3.  **Fase 2 (Crear Dataset):** `fase_2_crear_dataset.py` lee el TIF y los labels desde S3, genera miles de parches de `512x512` y los guarda de nuevo en S3.
 4.  **Fase 3 (Entrenamiento):** Un **AWS SageMaker Training Job** toma los parches de S3, entrena un modelo `yolov8s` en una instancia con GPU (ej. `ml.g4dn.xlarge`), y guarda el modelo final (`best.pt`) en S3.
 5.  **Fase 4 (Inferencia):** Un **AWS SageMaker Batch Transform Job** usa el modelo entrenado para escanear la imagen TIF *gigante* original desde S3, aplicando la inferencia en ventana deslizante (`sliding-window`) y fusionando los resultados con NMS.
@@ -32,8 +31,6 @@ El modelo final (`yolov8s` @ 100 épocas) alcanzó métricas excelentes:
 * **mAP50-95:** `0.578 (57.8%)`
 * **Precisión:** `0.893 (89.3%)`
 * **Recall:** `0.902 (90.2%)`
-
-*(Nota: Tus logs más recientes muestran un mAP50 de 0.948 y mAP50-95 de 0.577, ¡así que los puse!)*
 
 ---
 
