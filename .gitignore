@@ -1,0 +1,25 @@
+# Archivos de datos gigantes
+*.tif
+*.gpkg
+*.shp
+*.shx
+*.dbf
+*.prj
+
+# Modelos entrenados
+*.pt
+
+# Datasets generados
+/dataset_madrigueras/
+/dataset_split/
+
+# Logs y resultados de YOLO
+/runs/
+
+# Cache de Python y Colab
+__pycache__/
+.ipynb_checkpoints/
+.config/
+
+# Archivos de sistema
+.DS_Store

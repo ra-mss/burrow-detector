@@ -1,0 +1,9 @@
+ultralytics
+rasterio
+geopandas
+torch
+torchvision
+tqdm
+numpy
+Pillow
+shapely
