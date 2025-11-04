@@ -38,7 +38,7 @@ El modelo final (`yolov8s` @ 100 épocas) alcanzó métricas excelentes:
 
 1.  **Clonar el Repositorio:**
     ```bash
-    git clone [https://github.com/tu-usuario/proyecto-madrigueras.git](https://github.com/tu-usuario/proyecto-madrigueras.git)
+    git clone [https://github.com/ra-mss/burrow-detector.git](https://github.com/ra-mss/burrow-detector.git)
     cd proyecto-madrigueras
     ```
 
